@@ -1,0 +1,70 @@
+
+html {
+  //font-size: #{$root-font-size}px;
+
+  @include desktop {
+    $min-screen-width: 768;
+    $max-screen-width: 1440;
+    $default-value: $root-font-size;
+    $min-value: #{$min-screen-width * $root-font-size / $max-screen-width};
+
+    @include css-lock($min-value, $default-value, $min-screen-width, $max-screen-width);
+  }
+
+  @include tablet {
+    $min-screen-width: 360;
+    $max-screen-width: 768;
+    $default-value: $root-font-size;
+    $min-value: #{$min-screen-width * $root-font-size / $max-screen-width};
+
+    @include css-lock($min-value, $default-value, $min-screen-width, $max-screen-width);
+  }
+
+  @include mobile {
+    $min-screen-width: 0;
+    $max-screen-width: 360;
+    $default-value: $root-font-size;
+    $min-value: #{$min-screen-width * $root-font-size / $max-screen-width};
+
+    @include css-lock($min-value, $default-value, $min-screen-width, $max-screen-width);
+  }
+}
+
+
+body {
+  color: var(--text-color, #ffffff) !important;
+}
+
+#app {
+  font-family: 'Futura PT', Helvetica, Arial, sans-serif;
+  text-align: left;
+  background: #181818;
+  background-size: cover;
+  min-height: 100vh;
+  height: 100%;
+}
+
+// Scrollbar
+::-webkit-scrollbar {
+  width: rem(5px);
+  height: rem(10px);
+}
+
+/* Стиль для дорожки прокрутки */
+::-webkit-scrollbar-track {
+  background: #FFFFFF1A;
+  width: rem(4px);
+}
+
+/* Стиль ползунка */
+::-webkit-scrollbar-thumb {
+  background: #6D7E95;
+  border-radius: rem(4px);
+}
+
+/* Стиль ползунка при наведении */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(109, 126, 149, 0.84);
+  cursor: pointer;
+}
+
