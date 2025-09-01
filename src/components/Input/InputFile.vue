@@ -9,7 +9,7 @@ const model = defineModel({type: Array<File>});
 const changeFile = (event: Event): void => {
   const target = event.target as HTMLInputElement;
   if (target.files) {
-    model.value.push(target.files[0]);
+    model.value?.push(target.files[0]);
   }
 };
 
