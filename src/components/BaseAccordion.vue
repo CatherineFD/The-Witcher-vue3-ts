@@ -2,7 +2,7 @@
 import {ref} from "vue";
 import {AnswerType} from "@/types/AnswerType.ts";
 
-const props = defineProps<{
+defineProps<{
   contentAnswer: AnswerType
 }>();
 const isShowAnswer = ref<boolean>(false);
@@ -11,35 +11,41 @@ const showElement = (): void => {
   isShowAnswer.value = !isShowAnswer.value;
 };
 
-const onBeforeEnter = (el: HTMLElement): void => {
-  el.style.height = "0";
-  el.style.opacity = "0";
+const onBeforeEnter = (el: Element): void => {
+	const hel = el as HTMLElement;
+
+	hel.style.height = "0";
+  hel.style.opacity = "0";
 };
 
-const onEnter = (el: HTMLElement, done: () => void): void => {
-  el.style.transition = "height 0.2s ease, opacity 0.2s ease";
-  el.style.height = el.scrollHeight + "px";
-  el.style.opacity = "1";
+const onEnter = (el: Element, done: () => void): void => {
+	const hel = el as HTMLElement;
 
-  el.addEventListener(
+	hel.style.transition = "height 0.2s ease, opacity 0.2s ease";
+	hel.style.height = hel.scrollHeight + "px";
+	hel.style.opacity = "1";
+
+	hel.addEventListener(
       "transitionend",
       () => {
-        el.style.height = "";
+				hel.style.height = "";
         done();
       },
       { once: true },
   );
 };
 
-const onLeave = (el: HTMLElement, done: () => void): void => {
-  el.style.transition = "height 0.2s ease, opacity 0.2s ease";
-  el.style.height = el.scrollHeight + "px";
-  el.style.height = el.offsetHeight;
+const onLeave = (el: Element, done: () => void): void => {
+	const hel = el as HTMLElement;
 
-  el.style.height = "0";
-  el.style.opacity = "0";
+  hel.style.transition = "height 0.2s ease, opacity 0.2s ease";
+  hel.style.height = hel.scrollHeight + "px";
+  hel.style.height = hel.offsetHeight + "px";
 
-  el.addEventListener(
+  hel.style.height = "0";
+  hel.style.opacity = "0";
+
+  hel.addEventListener(
       "transitionend",
       () => {
         done();

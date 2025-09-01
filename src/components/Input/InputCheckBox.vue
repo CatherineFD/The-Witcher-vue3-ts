@@ -25,7 +25,7 @@ const model = defineModel({type: Boolean, required: true});
       {{ title }}
     </label>
 
-    <div v-if="props.errors.length > 0 && !props.modelValue">
+    <div v-if="props.errors.length > 0 && !model">
       <p class="checkbox__error-message">
         {{ errors }}
       </p>
